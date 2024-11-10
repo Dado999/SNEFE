@@ -1,0 +1,28 @@
+.category-page {
+  font-family: 'Verdana', sans-serif;
+  color: #333;
+  background-color: #fafad2;
+  border: 2px solid #000;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.category-page h1 {
+  color: #8b008b;
+  font-size: 2em;
+  text-align: center;
+  text-decoration: underline;
+}
+
+.comments-section {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e6e6fa;
+  border: 1px solid #888;
+}
+
+.comment-placeholder {
+  font-style: italic;
+  color: #666;
+}

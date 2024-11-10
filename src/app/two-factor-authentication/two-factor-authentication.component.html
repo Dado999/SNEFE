@@ -1,0 +1,34 @@
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <h2>Two-Factor Authentication</h2>
+    </mat-card-header>
+    <mat-card-content>
+      <form #twoFactorForm="ngForm" (submit)="verifyCode()">
+        <mat-error *ngIf="!codeValid">
+          Invalid or incorrect code!
+        </mat-error>
+        <div class="code-inputs">
+          <mat-form-field *ngFor="let i of [0, 1, 2, 3]; let index = index">
+            <input
+              matInput
+              type="text"
+              maxlength="1"
+              [(ngModel)]="code[index]"
+              name="code{{ index }}"
+              required
+              (input)="onInputChange($event, index)"
+            />
+          </mat-form-field>
+        </div>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!twoFactorForm.form.valid"
+        >
+          Verify
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

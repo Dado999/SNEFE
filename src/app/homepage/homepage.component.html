@@ -1,0 +1,11 @@
+<div class="forum-container">
+  <h1 class="forum-title">Welcome to the Forum</h1>
+  <p class="forum-description">A blast from the past, where ideas meet!</p>
+  <div class="categories">
+    <div *ngFor="let category of categories" class="category">
+      <h2>{{ category.name }}</h2>
+      <p>{{ category.description }}</p>
+      <button class="enter-btn" [routerLink]="[category.path]">Enter {{ category.name }}</button>
+    </div>
+  </div>
+</div>
