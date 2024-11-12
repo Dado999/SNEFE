@@ -7,7 +7,6 @@ import {NgIf} from '@angular/common';
 import {MatButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
 import {LoginService} from '../services/login/login.service';
-
 @Component({
   selector: 'app-login',
   standalone: true,

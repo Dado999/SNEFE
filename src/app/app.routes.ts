@@ -8,14 +8,16 @@ import {MusicComponent} from './music/music.component';
 import {SportComponent} from './sport/sport.component';
 import {CultureComponent} from './culture/culture.component';
 import {AuthGuard} from './auth.guard';
+import {RegisterComponent} from './register/register.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'authenticate' , component: TwoFactorAuthenticationComponent},
   { path: 'error', component: ErrorComponent},
+  { path: 'register', component: RegisterComponent},
   { path: 'homepage', component: HomepageComponent, canActivate: [AuthGuard] },
   { path: 'science', component: ScienceComponent, canActivate: [AuthGuard] },
   { path: 'culture', component: CultureComponent, canActivate: [AuthGuard] },
   { path: 'sport', component: SportComponent, canActivate: [AuthGuard] },
-  { path: 'music', component: MusicComponent, canActivate: [AuthGuard] },
+  { path: 'music', component: MusicComponent, canActivate: [AuthGuard] }
 ];
