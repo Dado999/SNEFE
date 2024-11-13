@@ -1,23 +1,33 @@
 export class User {
-  iduser : number;
-  name : string;
-  surname : string;
-  username : string;
-  password : string;
-  email : string;
-  admin : number;
-  moderator : number;
-  reguser : number;
+  iduser: number;
+  name: string;
+  surname: string;
+  username: string;
+  password: string;
+  email: string;
+  reguser: number;
+  permission: string;
+  role: string;
 
-  constructor() {
-    this.iduser = 0;
-    this.name = '';
-    this.surname = '';
-    this.username = '';
-    this.password = '';
-    this.email = '';
-    this.admin = 0;
-    this.moderator = 0;
-    this.reguser = 0;
+  constructor(
+    iduser: number = 0,
+    name: string = '',
+    surname: string = '',
+    username: string = '',
+    password: string = '',
+    email: string = '',
+    reguser: number = 0,
+    permission: string = 'ADD',
+    role: string = 'USER'
+  ) {
+    this.iduser = iduser;
+    this.name = name;
+    this.surname = surname;
+    this.username = username;
+    this.password = password;
+    this.email = email;
+    this.reguser = reguser;
+    this.permission = permission;
+    this.role = role;
   }
 }
