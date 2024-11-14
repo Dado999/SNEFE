@@ -1,5 +1,8 @@
 <div class="forum-container">
-  <h1 class="forum-title">Welcome to the Forum</h1>
+  <div class="header">
+    <h1 class="forum-title">Welcome to the Forum</h1>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
   <p class="forum-description">A blast from the past, where ideas meet!</p>
   <div class="categories">
     <div *ngFor="let category of categories" class="category">

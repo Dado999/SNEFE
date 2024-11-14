@@ -59,3 +59,15 @@
 .enter-btn:hover {
   background-color: #004c4c;
 }
+.logout-btn {
+  margin-left: auto;
+  padding: 8px 12px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.logout-btn:hover {
+  background-color: #c9302c;
+}
