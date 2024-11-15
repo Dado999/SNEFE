@@ -1,9 +1,24 @@
 <div class="category-page">
   <h1>{{ title }}</h1>
-  <p>Discuss the latest in sports. Share updates, scores, and highlights!</p>
+  <p>Discuss the latest in music. Share updates, and highlights!</p>
 
   <div class="comments-section">
     <h2>Comments</h2>
-    <p class="comment-placeholder">Comments will be displayed here...</p>
+
+    <!-- Comment list -->
+    <app-comment
+      *ngFor="let comment of comments"
+      [id]="comment.id"
+      [username]="comment.username"
+      [timestamp]="comment.timestamp"
+      [content]="comment.content">
+    </app-comment>
+
+    <!-- Pagination Controls -->
+    <div class="pagination-controls">
+      <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
+      <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+      <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage + 1 === totalPages">Next</button>
+    </div>
   </div>
 </div>
