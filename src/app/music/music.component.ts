@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CommentComponent} from '../comment/comment.component';
 import {NgForOf} from '@angular/common';
 import {CommentService} from '../services/comment/comment.service';
+import {PermissionService} from '../permission/permission-service';
 
 @Component({
   selector: 'app-music',

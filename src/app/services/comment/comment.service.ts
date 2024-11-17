@@ -31,16 +31,24 @@ export class CommentService {
     );
   }
 
-  deleteComment(id: number){
+  deleteComment(id: number): void {
     const token = localStorage.getItem('JWT');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    this.http.delete(this.baseUrl+'/{id}', {headers}).subscribe(
-      r =>
-        alert('successfully deleted comment!')
-    ,error => {
-        alert('unsuccessfully deleted comment!')
+
+    this.http.delete<{ message: string }>(`http://localhost:8080/comments/delete/${id}`, { headers }).pipe(
+      map(response => {
+        location.reload()// Show the success message
       })
+    ).subscribe({
+      next: () => console.log('Request completed successfully'),
+      error: (err) => console.error('Error occurred:', err)
+    });
   }
 
 
+  updateComment(updatedComment: { id: number; content: string}): Observable<{ message : string }> {
+    const token = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<{ message : string }>(`http://localhost:8080/comments/update/${updatedComment.id}`,updatedComment, {headers})
+  }
 }

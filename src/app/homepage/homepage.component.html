@@ -4,6 +4,7 @@
     <button class="logout-btn" (click)="logout()">Logout</button>
   </div>
   <p class="forum-description">A blast from the past, where ideas meet!</p>
+  <p class="forum-description">You currently have the permission to: <span style="font-weight: bolder"> {{ permission }}</span> comments. </p>
   <div class="categories">
     <div *ngFor="let category of categories" class="category">
       <h2>{{ category.name }}</h2>

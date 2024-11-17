@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgForOf} from '@angular/common';
 import {Router, RouterLink} from '@angular/router';
+import {PermissionService} from '../permission/permission-service';
 
 @Component({
   selector: 'app-homepage',
@@ -19,8 +20,13 @@ export class HomepageComponent {
     { name: 'Sport', description: 'Talk about sports from around the world', path: '../sport' },
     { name: 'Music', description: 'Discuss all things music', path: '../music' }
   ];
+  permission = '';
+  constructor(private router: Router,
+              private permissionService: PermissionService) {
+  }
 
-  constructor(private router: Router ) {
+  ngOnInit(){
+    this.permissionService.fetchPermission().subscribe(permission => this.permission = permission.permission);
   }
   logout() {
     localStorage.removeItem('JWT');

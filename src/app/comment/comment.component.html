@@ -8,11 +8,23 @@
       <button class="delete-btn" [disabled]="!canDelete" (click)="deleteComment(id)">
         <i class="fas fa-times"></i> Delete
       </button>
-      <button class="edit-btn" [disabled]="!canEdit">
+      <button class="edit-btn" [disabled]="!canEdit" (click)="editComment()">
         <i class="fas fa-edit"></i> Edit
       </button>
     </div>
   </div>
-  <p class="comment-content">{{ content }}</p>
+  <div class="comment-content">
+    <ng-container *ngIf="editing; else viewMode">
+      <textarea [(ngModel)]="editedContent" class="edit-area"></textarea>
+      <div class="edit-buttons">
+        <button (click)="saveEdit()">Save</button>
+        <button (click)="cancelEdit()">Cancel</button>
+      </div>
+    </ng-container>
+    <ng-template #viewMode>
+      {{ content }}
+    </ng-template>
+  </div>
+
 </div>
 

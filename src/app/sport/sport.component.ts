@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CommentService} from '../services/comment/comment.service';
 import {CommentComponent} from '../comment/comment.component';
 import {NgForOf} from '@angular/common';
+import {PermissionService} from '../permission/permission-service';
 
 @Component({
   selector: 'app-sport',
@@ -19,7 +20,6 @@ export class SportComponent {
   currentPage = 0;
   totalPages = 0;
   pageSize = 20;
-
   constructor(private commentService: CommentService) {}
 
   ngOnInit(): void {

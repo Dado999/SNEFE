@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {CommentService} from '../services/comment/comment.service';
 import {CommentComponent} from '../comment/comment.component';
 import {NgForOf} from '@angular/common';
+import {PermissionService} from '../permission/permission-service';
 
 @Component({
   selector: 'app-culture',
@@ -19,7 +20,6 @@ export class CultureComponent {
   currentPage = 0;
   totalPages = 0;
   pageSize = 20;
-
   constructor(private commentService: CommentService) {}
 
   ngOnInit(): void {
@@ -30,7 +30,6 @@ export class CultureComponent {
     this.commentService.getCategoryComments('CULTURE', this.currentPage, this.pageSize).subscribe(response => {
       this.comments = response.comments; // Assign the transformed comments
       this.totalPages = response.totalPages; // Assign the total pages
-      console.log(this.comments);
     }, error => {
       console.error('Error fetching comments:', error);
     });
