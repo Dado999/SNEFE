@@ -9,6 +9,8 @@ import {SportComponent} from './sport/sport.component';
 import {CultureComponent} from './culture/culture.component';
 import {AuthGuard} from './auth.guard';
 import {RegisterComponent} from './register/register.component';
+import {AdminComponent} from './admin/admin.component';
+import {ModeratorComponent} from './moderator/moderator.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -19,5 +21,7 @@ export const routes: Routes = [
   { path: 'science', component: ScienceComponent, canActivate: [AuthGuard] },
   { path: 'culture', component: CultureComponent, canActivate: [AuthGuard] },
   { path: 'sport', component: SportComponent, canActivate: [AuthGuard] },
-  { path: 'music', component: MusicComponent, canActivate: [AuthGuard] }
+  { path: 'music', component: MusicComponent, canActivate: [AuthGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
+  { path: 'moderator', component: ModeratorComponent, canActivate: [AuthGuard] }
 ];

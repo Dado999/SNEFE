@@ -1,6 +1,6 @@
 <div class="category-page">
   <h1>{{ title }}</h1>
-  <p>Discuss the latest in music. Share updates, and highlights!</p>
+  <p>Discuss the latest in culture. Share updates, and highlights!</p>
 
   <div class="comments-section">
     <h2>Comments</h2>
@@ -19,6 +19,13 @@
       <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 0">Previous</button>
       <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
       <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage + 1 === totalPages">Next</button>
+    </div>
+
+    <!-- Add Comment Section -->
+    <div class="add-comment-section" *ngIf="canAdd">
+      <h2>Add a Comment</h2>
+      <textarea [(ngModel)]="newCommentContent" placeholder="Write your comment here..."></textarea>
+      <button (click)="addComment()" [disabled]="!newCommentContent.trim()">Post Comment</button>
     </div>
   </div>
 </div>

@@ -61,7 +61,12 @@ export class CommentComponent {
       if (permission) {
         if (permission.permission === 'ADD') this.canAdd = true;
         else if (permission.permission === 'MODIFY') this.canEdit = true;
-        else this.canDelete = true;
+        else if(permission.permission === 'DELETE') this.canDelete = true;
+        else if(permission.permission === 'MOD') {
+          this.canDelete = true;
+          this.canEdit = true;
+          this.canAdd = true;
+        }
       }
     });
   }

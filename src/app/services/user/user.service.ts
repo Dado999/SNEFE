@@ -19,4 +19,10 @@ export class UserService {
         alert('Unsuccessful registration, please check your credentials and try again!')
     );
   }
+
+  getUser():Observable<User>{
+    const token = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<User>('http://localhost:8080/users/get-current-user', {headers});
+  }
 }
