@@ -25,4 +25,15 @@ export class UserService {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.get<User>('http://localhost:8080/users/get-current-user', {headers});
   }
+
+  getUnregisteredUsers(): Observable<User[]> {
+    const token = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.get<User[]>('http://localhost:8080/users/get-unregistered-users', { headers });
+  }
+  updateUser(user: User): Observable<{ message : string}>{
+    const token = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post<{message : string}>('http://localhost:8080/users/update/'+ user.iduser, user, {headers})
+  }
 }

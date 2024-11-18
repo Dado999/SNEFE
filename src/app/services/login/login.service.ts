@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {LoginDTO} from '../../models/loginDTO/login-dto';
 import { Router} from '@angular/router';
+import {JwtService} from '../jwtservice/jwt.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,19 +11,40 @@ import { Router} from '@angular/router';
 export class LoginService {
 
   constructor(private http: HttpClient,
-              private router: Router) { }
+              private router: Router,
+              private jwtService: JwtService,) { }
 
    login(loginInfo : LoginDTO){
-    this.http.post<any>('http://localhost:8080/auth/login',loginInfo).subscribe(
-      response => {
-          console.log(response.jwtToken);
-          localStorage.setItem('JWT',response.jwtToken)
-          this.router.navigate(['authenticate']);
-      },
-      error => {
-        this.router.navigate(['error']);
-      }
-    )
+    // this.http.post<any>('http://localhost:8080/auth/login',loginInfo).subscribe(
+    //   response => {
+    //       console.log(response.jwtToken);
+    //       localStorage.setItem('JWT',response.jwtToken)
+    //       this.router.navigate(['authenticate']);
+    //   },
+    //   error => {
+    //     this.router.navigate(['error']);
+    //   }
+    // )
+
+     this.http
+       .post<any>('http://localhost:8080/auth/login',loginInfo).subscribe(
+         (response) => {
+           const token = response.jwtToken;
+           localStorage.setItem('JWT', token);
+
+           const role = this.jwtService.getRoleFromToken(token);
+           console.log(role)
+           if (role == 'ADMIN') {
+             this.router.navigate(['/admin'])
+            // localStorage.setItem('2FA','true')
+           } else {
+             this.router.navigate(['/authenticate']);
+           }
+         },
+         (error) => {
+           console.error('Login failed:', error);
+         }
+       );
   }
   twoFactor(): Observable<number>{
     const token = localStorage.getItem('JWT');

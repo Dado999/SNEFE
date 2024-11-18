@@ -1,1 +1,49 @@
-<p>admin works!</p>
+<div class="container">
+  <h2>Unregistered Users</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Reguser</th>
+      <th>Permission</th>
+      <th>Role</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of unregisteredUsers">
+      <td>{{ user.name }}</td>
+      <td>{{ user.surname }}</td>
+      <td>{{ user.username }}</td>
+      <td>{{ user.email }}</td>
+      <td>
+        <select [(ngModel)]="user.reguser">
+          <option value="0">Unregistered</option>
+          <option value="1">Registered</option>
+        </select>
+      </td>
+      <td>
+        <select [(ngModel)]="user.permission">
+          <option value="ADD">ADD</option>
+          <option value="MODIFY">MODIFY</option>
+          <option value="DELETE">DELETE</option>
+          <option value="MOD">MOD</option>
+        </select>
+      </td>
+      <td>
+        <select [(ngModel)]="user.role">
+          <option value="USER">USER</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="MODERATOR">MODERATOR</option>
+        </select>
+      </td>
+      <td>
+        <button (click)="updateUser(user)">Save</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
