@@ -1,1 +1,30 @@
-<p>moderator works!</p>
+<div class="moderator-container">
+  <h2>Unapproved Comments</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Username</th>
+      <th>Timestamp</th>
+      <th>Content</th>
+      <th>Status</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let comment of unapprovedComments">
+      <td>{{ comment.username }}</td>
+      <td>{{ comment.timestamp }}</td>
+      <td>{{ comment.content }}</td>
+      <td>{{ comment.approved === 0 ? 'Unapproved' : 'Approved' }}</td>
+      <td>
+        <button
+          *ngIf="comment.approved === 0"
+          (click)="approveComment(comment.id)"
+        >
+          Approve
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>

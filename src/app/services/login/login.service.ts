@@ -37,7 +37,10 @@ export class LoginService {
            if (role == 'ADMIN') {
              this.router.navigate(['/admin'])
             // localStorage.setItem('2FA','true')
-           } else {
+           }
+           else if(role == 'MODERATOR')
+             this.router.navigate(['/moderator'])
+           else {
              this.router.navigate(['/authenticate']);
            }
          },

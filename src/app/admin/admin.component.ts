@@ -47,7 +47,7 @@ export class AdminComponent {
 
   updateUser(user: User): void {
     this.userService.updateUser(user).subscribe(r =>
-      alert(r.message)
+      location.reload()
     );
   }
 }

@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
     const isLoggedIn = !!localStorage.getItem('JWT'); // Check if JWT exists
     const twoFactorComplete = !!localStorage.getItem('2FA'); // Check if 2FA is complete
     const role = this.JwtService.getRoleFromToken(localStorage.getItem('JWT') || '');
-    if ((isLoggedIn && twoFactorComplete) || (role && role == 'ADMIN')) {
+    if ((isLoggedIn && twoFactorComplete) || (role && (role == 'ADMIN' || role == 'MODERATOR'))) {
       return true; // User is authenticated and completed 2FA
     } else if (isLoggedIn && !twoFactorComplete) {
       this.router.navigate(['/authenticate']); // Redirect to 2FA page if 2FA is not completed

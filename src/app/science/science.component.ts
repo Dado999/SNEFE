@@ -71,8 +71,8 @@ export class ScienceComponent {
         newComment.iduser = response.iduser
       }
     )
-    this.commentService.addComment(newComment).subscribe(() => {
-      // Reload comments after successful addition
+    this.commentService.addComment(newComment).subscribe(r => {
+      console.log(r.message)
       this.loadComments();
       this.newCommentContent = ''; // Clear the input
     });

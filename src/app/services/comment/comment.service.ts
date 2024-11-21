@@ -60,8 +60,33 @@ export class CommentService {
   }
 
   addComment(newComment: { date: string; category: string; iduser: number; content: string; approved: number }): Observable<{ message: string }> {
+    console.log(newComment)
     const token = localStorage.getItem('JWT');
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     return this.http.post<{message : string}>('http://localhost:8080/comments/insert',newComment, {headers})
+  }
+
+  getUnapprovedComments(): Observable<{ id: number; username: string; timestamp: string; content: string; approved: number }[]> {
+    const token = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get<any[]>('http://localhost:8080/comments/unapproved-comments', { headers }).pipe(
+      map(response =>
+        response.map(comment => ({
+          id: comment.id,
+          username: `User${comment.iduser}`, // Replace `iduser` with a generic username, adjust as needed
+          timestamp: new Date(comment.date).toLocaleString(), // Convert timestamp to a readable format
+          content: comment.content,
+          approved: comment.approved
+        }))
+      )
+    );
+  }
+
+
+  approveComment(commentId: number): Observable<{ message : string}> {
+    const token = localStorage.getItem('JWT');
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post< { message : string } > ('http://localhost:8080/comments/approve/'+ commentId, {},{headers})
   }
 }
