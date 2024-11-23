@@ -24,7 +24,7 @@ export class ModeratorComponent {
   fetchUnapprovedComments(): void {
     this.commentService.getUnapprovedComments().subscribe({
       next: (response) => {
-        this.unapprovedComments = response; // This will now correctly assign the comments
+        this.unapprovedComments = response;
       },
       error: (err) => {
         console.error('Error fetching unapproved comments:', err);

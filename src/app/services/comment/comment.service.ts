@@ -26,11 +26,11 @@ export class CommentService {
         comments: response.content
           .map((comment: any) => ({
             id: comment.id,
-            username: comment.iduser.username, // Extract the username from iduser
-            timestamp: new Date(comment.date).toLocaleString(), // Convert timestamp to readable format
-            content: comment.content // Use the content field directly
-          })), // Sort by timestamp in descending order
-        totalPages: response.totalPages // Include the totalPages metadata
+            username: comment.iduser.username,
+            timestamp: new Date(comment.date).toLocaleString(),
+            content: comment.content
+          })),
+        totalPages: response.totalPages
       }))
     );
   }
@@ -43,7 +43,7 @@ export class CommentService {
 
     this.http.delete<{ message: string }>(`http://localhost:8080/comments/delete/${id}`, { headers }).pipe(
       map(response => {
-        location.reload()// Show the success message
+        location.reload()
       })
     ).subscribe({
       next: () => console.log('Request completed successfully'),
@@ -74,8 +74,8 @@ export class CommentService {
       map(response =>
         response.map(comment => ({
           id: comment.id,
-          username: `User${comment.iduser}`, // Replace `iduser` with a generic username, adjust as needed
-          timestamp: new Date(comment.date).toLocaleString(), // Convert timestamp to a readable format
+          username: `User${comment.iduser}`,
+          timestamp: new Date(comment.date).toLocaleString(),
           content: comment.content,
           approved: comment.approved
         }))

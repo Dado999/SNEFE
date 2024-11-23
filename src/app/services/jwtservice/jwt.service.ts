@@ -9,7 +9,6 @@ import {Injectable} from '@angular/core';
 export class JwtService {
   constructor() {}
 
-  // Decode the JWT token
   decodeToken(token: string): any {
     try {
       return jwtDecode(token);
@@ -19,10 +18,10 @@ export class JwtService {
     }
   }
 
-  // Get the role from the decoded token
+
   getRoleFromToken(token: string | null): string | null {
     if (!token) {
-      return null; // Return null if token is not provided
+      return null;
     }
     const decodedToken = this.decodeToken(token);
     return decodedToken ? decodedToken.role : null;

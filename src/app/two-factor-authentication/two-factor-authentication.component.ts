@@ -53,11 +53,10 @@ export class TwoFactorAuthenticationComponent {
   onInputChange(event: any, index: number): void {
     const input = event.target as HTMLInputElement;
     if (input.value.length > 0 && index < 3) {
-      // Automatically move to the next input if this one is filled
       const nextInput = document.querySelector<HTMLInputElement>(`input[name="code${index + 1}"]`);
       nextInput?.focus();
     } else if (input.value.length === 0 && index > 0) {
-      // Move to the previous input if backspace is pressed and the field is empty
+
       const prevInput = document.querySelector<HTMLInputElement>(`input[name="code${index - 1}"]`);
       prevInput?.focus();
     }

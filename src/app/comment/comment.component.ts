@@ -18,27 +18,6 @@ import {tap} from 'rxjs/operators';
   styleUrl: './comment.component.css'
 })
 export class CommentComponent {
-  // @Input() username: string = '';
-  // @Input() timestamp: string = '';
-  // @Input() content: string = '';
-  //
-  // canDelete: boolean = false;
-  // canEdit: boolean = false;
-  // canAdd: boolean = false
-  //
-  // constructor(protected permissionService: PermissionService) {
-  //   this.permissionService.fetchPermission().subscribe(permission=> {
-  //     const r = permission.permission
-  //     console.log(permission.permission)
-  //     if(r == 'ADD')
-  //       this.canAdd = true;
-  //     else if(r == 'MODIFY')
-  //       this.canEdit = true;
-  //     else
-  //       this.canDelete = true;
-  //   });
-  //   console.log(this.canAdd + ' ' + this.canEdit + ' ' + this.canDelete)
-  // }
   @Input() id: number = 0;
   @Input() username: string = '';
   @Input() timestamp: string = '';
@@ -48,8 +27,8 @@ export class CommentComponent {
   canEdit = false;
   canDelete = false;
 
-  editing = false; // Tracks if the comment is in editing mode
-  editedContent: string = ''; // Holds the edited content
+  editing = false;
+  editedContent: string = '';
 
   constructor(
     protected permissionService: PermissionService,
@@ -71,7 +50,7 @@ export class CommentComponent {
     });
   }
 
-  // Enter editing mode
+
   editComment() {
     if (this.canEdit) {
       this.editing = true;
@@ -79,7 +58,6 @@ export class CommentComponent {
     }
   }
 
-  // Save the edited comment
   saveEdit() {
     const updatedComment = {
       id: this.id,
@@ -88,20 +66,17 @@ export class CommentComponent {
 
     this.commentService.updateComment(updatedComment).pipe(
       tap((response) => {
-        // Update the UI after a successful response
         this.content = this.editedContent;
         this.editing = false;
         console.log('Comment updated successfully!');
       }),
       catchError((error) => {
-        // Handle errors
         console.error('Failed to save comment:', error);
-        return of(null); // Return a fallback value to ensure the stream continues
+        return of(null);
       })
     ).subscribe();
   }
 
-  // Cancel editing
   cancelEdit() {
     this.editing = false;
   }

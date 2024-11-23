@@ -15,16 +15,6 @@ export class LoginService {
               private jwtService: JwtService,) { }
 
    login(loginInfo : LoginDTO){
-    // this.http.post<any>('http://localhost:8080/auth/login',loginInfo).subscribe(
-    //   response => {
-    //       console.log(response.jwtToken);
-    //       localStorage.setItem('JWT',response.jwtToken)
-    //       this.router.navigate(['authenticate']);
-    //   },
-    //   error => {
-    //     this.router.navigate(['error']);
-    //   }
-    // )
 
      this.http
        .post<any>('http://localhost:8080/auth/login',loginInfo).subscribe(
@@ -36,7 +26,6 @@ export class LoginService {
            console.log(role)
            if (role == 'ADMIN') {
              this.router.navigate(['/admin'])
-            // localStorage.setItem('2FA','true')
            }
            else if(role == 'MODERATOR')
              this.router.navigate(['/moderator'])
@@ -45,7 +34,7 @@ export class LoginService {
            }
          },
          (error) => {
-           console.error('Login failed:', error);
+           this.router.navigate(['/error']);
          }
        );
   }

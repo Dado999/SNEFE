@@ -26,8 +26,8 @@ export class ScienceComponent {
   totalPages = 0;
   pageSize = 20;
 
-  canAdd = false; // Tracks if the user can add comments
-  newCommentContent = ''; // Holds the content of the new comment
+  canAdd = false;
+  newCommentContent = '';
   constructor(private commentService: CommentService,
               private permissionService: PermissionService,
               private userService: UserService) {}
@@ -41,8 +41,8 @@ export class ScienceComponent {
 
   loadComments(): void {
     this.commentService.getCategoryComments('SCIENCE', this.currentPage, this.pageSize).subscribe(response => {
-      this.comments = response.comments; // Assign the transformed comments
-      this.totalPages = response.totalPages; // Assign the total pages
+      this.comments = response.comments;
+      this.totalPages = response.totalPages;
     }, error => {
       console.error('Error fetching comments:', error);
     });
@@ -51,8 +51,8 @@ export class ScienceComponent {
 
   goToPage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
-      this.currentPage = page; // Update the current page
-      this.loadComments(); // Fetch comments for the selected page
+      this.currentPage = page;
+      this.loadComments();
     }
   }
 
@@ -74,7 +74,7 @@ export class ScienceComponent {
     this.commentService.addComment(newComment).subscribe(r => {
       console.log(r.message)
       this.loadComments();
-      this.newCommentContent = ''; // Clear the input
+      this.newCommentContent = '';
     });
   }
 }
