@@ -14,14 +14,15 @@ import {ModeratorComponent} from './moderator/moderator.component';
 
 export const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'authenticate' , component: TwoFactorAuthenticationComponent},
-  { path: 'error', component: ErrorComponent},
-  { path: 'register', component: RegisterComponent},
+  { path: 'authenticate', component: TwoFactorAuthenticationComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'homepage', component: HomepageComponent, canActivate: [AuthGuard] },
   { path: 'science', component: ScienceComponent, canActivate: [AuthGuard] },
   { path: 'culture', component: CultureComponent, canActivate: [AuthGuard] },
   { path: 'sport', component: SportComponent, canActivate: [AuthGuard] },
   { path: 'music', component: MusicComponent, canActivate: [AuthGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
-  { path: 'moderator', component: ModeratorComponent, canActivate: [AuthGuard] }
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuard], data: { role: 'ADMIN' } },
+  { path: 'moderator', component: ModeratorComponent, canActivate: [AuthGuard], data: { role: 'MODERATOR' } }
 ];
+

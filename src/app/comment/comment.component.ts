@@ -26,6 +26,7 @@ export class CommentComponent {
   canAdd = false;
   canEdit = false;
   canDelete = false;
+  permissionString : string = ''
 
   editing = false;
   editedContent: string = '';
@@ -38,6 +39,7 @@ export class CommentComponent {
   ngOnInit(): void {
     this.permissionService.fetchPermission().subscribe((permission) => {
       if (permission) {
+        this.permissionString = permission.permission
         if (permission.permission === 'ADD') this.canAdd = true;
         else if (permission.permission === 'MODIFY') this.canEdit = true;
         else if(permission.permission === 'DELETE') this.canDelete = true;
